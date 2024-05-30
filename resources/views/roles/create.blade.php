@@ -2,7 +2,7 @@
 @section('content')
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
-            <h4 class="panel-title">Basic Form Validation</h4>
+            <h4 class="panel-title">ADD NEW ROLE</h4>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i
                         class="fa fa-expand"></i></a>

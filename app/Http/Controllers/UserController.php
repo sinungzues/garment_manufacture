@@ -32,19 +32,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string',
             'role_id' => 'required|exists:roles,id',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'role_id' => $request->role_id,
-        ]);
+        $validatedData['password'] = Hash::make($request->password);
+
+        User::create($validatedData);
 
         return redirect('/user');
     }
@@ -63,7 +60,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**

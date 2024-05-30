@@ -2,7 +2,7 @@
 @section('content')
     <div class="panel panel-inverse">
         <div class="panel-heading">
-            <h4 class="panel-title">Data Table - Default</h4>
+            <h4 class="panel-title">USER</h4>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i
                         class="fa fa-expand"></i></a>
@@ -27,27 +27,28 @@
                         <th class="text-nowrap text-center">Name</th>
                         <th class="text-nowrap text-center">Username</th>
                         <th class="text-nowrap text-center">Role</th>
-                        <th class="text-nowrap text-center">Departement</th>
                         <th class="text-nowrap text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td width="1%" class="fw-bold text-center">1</td>
-                        <td>Trident</td>
-                        <td>Internet Explorer 4.0</td>
-                        <td>Win 95+</td>
-                        <td>4</td>
-                        <td>X</td>
-                    </tr>
-                    <tr>
-                        <td width="1%" class="fw-bold text-center">2</td>
-                        <td>Trident</td>
-                        <td>Internet Explorer 4.0</td>
-                        <td>Win 95+</td>
-                        <td>4</td>
-                        <td>X</td>
-                    </tr>
+                    @foreach ($users as $index => $user)
+                        <tr>
+                            <td width="1%" class="fw-bold text-center">{{ $index + 1 }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->username }}</td>
+                            <td>{{ $user->role->name }}</td>
+                            <td>
+                                <a href="/user/{{ $user->id }}/edit" class="btn btn-sm btn-yellow">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <form action="/user/{{ $user->id }}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
