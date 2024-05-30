@@ -33,7 +33,7 @@
                         <tr>
                             <td width="1%" class="fw-bold text-center">{{ $index + 1 }}</td>
                             <td>{{ $role->name }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="/role/{{ $role->id }}/edit" class="btn btn-sm btn-yellow">
                                 <i class="fa fa-pencil"></i>
                                 </a>

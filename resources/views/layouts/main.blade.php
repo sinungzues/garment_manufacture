@@ -10,7 +10,9 @@
 
     @include('layouts.css')
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
 </head>
 
 <body>
@@ -34,22 +36,29 @@
                 <div class="navbar-item navbar-user dropdown">
                     <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center"
                         data-bs-toggle="dropdown">
-                        <img src="../assets/img/user/user-13.jpg" alt />
+                        @php
+                            // Periksa apakah session randomNumber sudah ada atau belum
+                            $randomNumber = session('randomNumber');
+                            if (!$randomNumber) {
+                                // Jika belum, hasilkan nilai randomNumber secara acak dan simpan ke dalam session
+                                $randomNumber = rand(1, 14);
+                                session(['randomNumber' => $randomNumber]);
+                            }
+                            $user = Auth::user();   
+                        @endphp
+                        <img src="{{ asset('assets/img/user/user-' . $randomNumber . '.jpg') }}" alt="User Image" />
                         <span>
-                            <span class="d-none d-md-inline">Adam Schwartz</span>
+                            <span class="d-none d-md-inline">{{ $user->name }}</span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end me-1">
-                        <a href="extra_profile.html" class="dropdown-item">Edit Profile</a>
-                        <a href="email_inbox.html" class="dropdown-item d-flex align-items-center">
-                            Inbox
-                            <span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
-                        </a>
-                        <a href="calendar.html" class="dropdown-item">Calendar</a>
-                        <a href="extra_settings_page.html" class="dropdown-item">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="login.html" class="dropdown-item">Log Out</a>
+                        <a href="/logout" class="dropdown-item"
+                            onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Log
+                            Out</a>
+                        <form id="logoutForm" action="/logout" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </div>

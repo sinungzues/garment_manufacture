@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -21,9 +25,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('auth');
 
 
-Route::resource('user', UserController::class);
-Route::resource('role', RoleController::class);
-Route::resource('permissions', PermissionController::class);
+Route::resource('user', UserController::class)->middleware('auth');
+Route::resource('role', RoleController::class)->middleware('auth');
+Route::resource('permissions', PermissionController::class)->middleware('auth');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);

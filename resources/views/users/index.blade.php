@@ -37,7 +37,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->role->name }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="/user/{{ $user->id }}/edit" class="btn btn-sm btn-yellow">
                                     <i class="fa fa-pencil"></i>
                                 </a>

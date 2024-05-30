@@ -6,14 +6,14 @@
                     data-target="#appSidebarProfileMenu">
                     <div class="menu-profile-cover with-shadow"></div>
                     <div class="menu-profile-image">
-                        <img src="../assets/img/user/user-13.jpg" alt />
+                        <img src="{{ asset('assets/img/user/user-' . $randomNumber . '.jpg') }}" alt />
                     </div>
                     <div class="menu-profile-info">
                         <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">Sean Ngu</div>
+                            <div class="flex-grow-1">{{ $user->name }}</div>
                             <div class="menu-caret ms-auto"></div>
                         </div>
-                        <small>Frontend developer</small>
+                        <small>{{ $user->role->name }}</small>
                     </div>
                 </a>
             </div>
@@ -22,20 +22,6 @@
                     <a href="javascript:;" class="menu-link">
                         <div class="menu-icon"><i class="fa fa-cog"></i></div>
                         <div class="menu-text">Settings</div>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="javascript:;" class="menu-link">
-                        <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
-                        <div class="menu-text">Send Feedback</div>
-                    </a>
-                </div>
-                <div class="menu-item pb-5px">
-                    <a href="javascript:;" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-question-circle"></i>
-                        </div>
-                        <div class="menu-text">Helps</div>
                     </a>
                 </div>
                 <div class="menu-divider m-0"></div>
@@ -51,7 +37,8 @@
                     </div>
                 </a>
             </div>
-            <div class="menu-item has-sub {{ Request::segment(1) == 'user' || Request::segment(1) == 'role' || Request::segment(1) == 'permissions' ? 'active' : '' }}">
+            <div
+                class="menu-item has-sub {{ Request::segment(1) == 'user' || Request::segment(1) == 'role' || Request::segment(1) == 'permissions' ? 'active' : '' }}">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
                         <i class="fa fa-users"></i>
