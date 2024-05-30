@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard</title>
+    <title>@yield('title', 'PTBSGI')</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="Dashboard for Color Admin" name="description" />
     <meta content="Author Name" name="author" />
+
+    <link rel="icon" href="{{ asset('assets/img/logo/logo-bs5.png') }}">
 
     @include('layouts.css')
 
@@ -44,7 +46,7 @@
                                 $randomNumber = rand(1, 14);
                                 session(['randomNumber' => $randomNumber]);
                             }
-                            $user = Auth::user();   
+                            $user = Auth::user();
                         @endphp
                         <img src="{{ asset('assets/img/user/user-' . $randomNumber . '.jpg') }}" alt="User Image" />
                         <span>

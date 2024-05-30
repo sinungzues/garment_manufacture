@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', 'PT BSGI | Add New Role')
 @section('content')
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
@@ -16,6 +17,7 @@
         </div>
 
         <div class="panel-body">
+            <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger mb-3"><i class="fa fa-angles-left"></i> Back</a>
             <form class="form-horizontal" data-parsley-validate="true" action="/role" method="post">
                 @csrf
                 <div class="form-group row mb-3">

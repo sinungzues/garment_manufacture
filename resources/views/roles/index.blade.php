@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', 'PT BSGI | Role')
 @section('content')
     <div class="panel panel-inverse">
         <div class="panel-heading">
@@ -17,7 +18,7 @@
 
         <div class="panel-body">
             <a href="/role/create" class="btn btn-success mb-3">
-                <i class="fa fa-user-plus me-1"></i> Add Role
+                <i class="fa fa-user-tie me-1"></i> Add Role
             </a>
             <table id="data-table-default" width="100%"
                 class="table table-striped table-bordered align-middle text-nowrap">
