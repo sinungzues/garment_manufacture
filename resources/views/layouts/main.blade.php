@@ -26,7 +26,9 @@
         <div id="header" class="app-header">
             <div class="navbar-header">
                 <a href="/" class="navbar-brand"><span class="navbar-logo"></span>
-                    <b class="me-3px">Color</b> Admin</a>
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="" srcset="">
+                    <b class="me-3px">Clo</b>ud
+                </a>
                 <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
