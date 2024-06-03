@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogActivity;
 use App\Models\Ppn;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PpnController extends Controller
 {
@@ -38,6 +40,8 @@ class PpnController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $id_user = $user->id;
         $validatedData = $request->validate([
             'ppn' =>'required|max:255',
             'old_ppn' =>'required|max:255',
@@ -50,6 +54,9 @@ class PpnController extends Controller
                 'title' => 'Data Update!',
                 'message' => 'Your data has been successfully updated.'
             ]);
+
+            LogActivity::writeLog('User update ppn value.', 'info', $id_user, ['new_ppn' => $validatedData['ppn'],
+                                                                                'old_ppn' => $validatedData['old_ppn']]);
         }else{
             session()->flash('notification', [
                 'type' => 'error',

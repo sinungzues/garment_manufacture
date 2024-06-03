@@ -75,10 +75,11 @@ class PurchaseOrderController extends Controller
             $existingNopo = $po->nopo;
 
             if ($nopo === $existingNopo && $po->status === "A") {
-                $notification = [
-                    'message' => 'No.PO Sudah Digunakan',
-                    'alert-type' => 'error'
-                ];
+                session()->flash('notification', [
+                    'type' => 'error',
+                    'title' => 'ERROR!',
+                    'message' => 'No. PO Has Been Used.'
+                ]);
 
                 return redirect()->back()->withInput();
             }
@@ -100,15 +101,17 @@ class PurchaseOrderController extends Controller
         $validatedData['input_date'] = Carbon::now();
         $po = PurchaseOrder::create($validatedData);
         if($po){
-            $notification = array(
-                'message' => 'Purchase Order Has Been Added',
-                'alert-type' => 'success'
-            );
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Saved!',
+                'message' => 'Your data has been successfully saved.'
+            ]);
         }else{
-            $notification = array(
-                'message' => 'Can\'t Add New Purchase Order Now!',
-                'alert-type' => 'error'
-            );
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Saved!',
+                'message' => 'Your data can\'t saved.'
+            ]);
         }
 
         return redirect('/purchaseorder');
@@ -187,16 +190,18 @@ class PurchaseOrderController extends Controller
 
         $updated = $purchaseOrder->update();
 
-        if ($updated) {
-            $notification = array(
-                'message' => 'Purchase Order Has Been Updated',
-                'alert-type' => 'success'
-            );
-        } else {
-            $notification = array(
-                'message' => 'Can\'t Update Purchase Order Now!',
-                'alert-type' => 'error'
-            );
+        if($updated->save()){
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Saved!',
+                'message' => 'Your data has been successfully updated.'
+            ]);
+        }else{
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Saved!',
+                'message' => 'Your data can\'t update.'
+            ]);
         }
 
         return redirect('/purchaseorder');
@@ -226,21 +231,24 @@ class PurchaseOrderController extends Controller
                     $detail->save();
                 }
 
-                $notification = [
-                    'message' => 'Data Has Been Deleted',
-                    'alert-type' => 'success'
-                ];
+                session()->flash('notification', [
+                    'type' => 'success',
+                    'title' => 'Data Deleted!',
+                    'message' => 'Your data has been successfully deleted.'
+                ]);
             } else {
-                $notification = [
-                    'message' => 'Can\'t Delete Data Now!',
-                    'alert-type' => 'error'
-                ];
+                session()->flash('notification', [
+                    'type' => 'error',
+                    'title' => 'Data Not Deleted!',
+                    'message' => 'Your data can\'t deleted.'
+                ]);
             }
         }else{
-            $notification = [
-                'message' => 'Purchase Order Has Been Approved, Can\'t Delete',
-                'alert-type' => 'error'
-            ];
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Can\'t Delete!',
+                'message' => 'Purchase Orders Has Been Approved, Can\' Delete Apporved Data!'
+            ]);
         }
 
 

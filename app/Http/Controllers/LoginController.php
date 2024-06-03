@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -41,6 +43,10 @@ class LoginController extends Controller
                 'time' => 2000
             ]);
 
+            LogActivity::writeLog('User logged in.', 'info', ['user_id' => $user->id,
+                                                                'username' => $user->name,
+                                                                ]);
+
             return redirect()->intended('/');
         }
 
@@ -50,6 +56,11 @@ class LoginController extends Controller
 
     public function logout()
     {
+        $user = auth()->user();
+
+        LogActivity::writeLog('User logged out.', 'info', ['user_id' => $user->id,
+                                                            'username' => $user->name,
+                                                            ]);
         Session::forget('randomNumber');
         Auth::logout();
         return redirect('/login');

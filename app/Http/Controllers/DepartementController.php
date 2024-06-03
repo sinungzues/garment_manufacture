@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departement;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartementController extends Controller
 {
@@ -31,6 +33,8 @@ class DepartementController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $id_user = $user->id;
         $validatedData = $request->validate([
             'name' =>'required|max:255',
         ]);
@@ -42,6 +46,7 @@ class DepartementController extends Controller
                 'title' => 'Data Saved!',
                 'message' => 'Your data has been successfully saved.'
             ]);
+            LogActivity::writeLog('User added new departement.', 'info', $id_user, ['name' => $validatedData['name'],]);
         }else{
             session()->flash('notification', [
                 'type' => 'error',
@@ -76,18 +81,20 @@ class DepartementController extends Controller
      */
     public function update(Request $request, Departement $departement)
     {
-        $name = $departement->name;
+        $user = Auth::user();
+        $id_user = $user->id;
         $request->validate([
             'name' => 'required|max:255',
         ]);
         $departement->name = $request->input('name');
-        $newName = $departement->name;
         if($departement->save()){
             session()->flash('notification', [
                 'type' => 'success',
                 'title' => 'Data Saved!',
                 'message' => 'Your data has been successfully saved.'
             ]);
+            LogActivity::writeLog('User edit departement.', 'info', $id_user, ['name' => $request->input('name'),
+                                                            ]);
         }else{
             session()->flash('notification', [
                 'type' => 'error',
@@ -103,12 +110,16 @@ class DepartementController extends Controller
      */
     public function destroy(Departement $departement)
     {
+        $user = Auth::user();
+        $id_user = $user->id;
         if($departement->delete()){
             session()->flash('notification', [
                 'type' => 'success',
                 'title' => 'Data Deleted!',
                 'message' => 'Your data has been successfully deleted.'
             ]);
+            LogActivity::writeLog('User delete departement.', 'info', $id_user, ['name' => $departement->name,
+                                                            ]);
         }else{
             session()->flash('notification', [
                 'type' => 'error',

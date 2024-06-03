@@ -126,6 +126,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'database' => [
+            'driver' => 'single',
+            'table' => 'logs', // Nama tabel log di database
+            'level' => 'debug', // Tingkat log yang ingin disimpan
+        ],
     ],
 
 ];
