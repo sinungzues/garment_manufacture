@@ -17,14 +17,14 @@
                     <label for="material" class="col-lg-4 col-form-label">Material</label>
                     <div class="col-lg-8">
                         <input type="text" class="form-control" name="material" id="material"
-                            value="{{ old('material', $purchaseOrderDetail->material) }}" required>
+                            value="{{ old('material', $purchaseOrderDetail->material) }}" required autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row mb-3 row mb-3">
                     <label for="qty" class="col-lg-4 col-form-label">Qty</label>
                     <div class="col-lg-8">
                         <input type="number" class="form-control" name="qty" id="qty"
-                            value="{{ old('qty', $purchaseOrderDetail->qty) }}" required>
+                            value="{{ old('qty', $purchaseOrderDetail->qty) }}" required autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row mb-3 row mb-3">
@@ -47,7 +47,7 @@
                     <div class="col-lg-8">
                         <input type="text" class="form-control" name="price" id="price"
                             value="{{ old('price', $purchaseOrderDetail->price) }}" required
-                            onkeypress="return isNumberKey(event)">
+                            onkeypress="return isNumberKey(event)" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row mt-3">

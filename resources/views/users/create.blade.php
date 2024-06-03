@@ -14,21 +14,21 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="name">Full Name</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="name" name="name"
+                        <input class="form-control" autocomplete="off" type="text" id="name" name="name"
                             data-parsley-required="true" required />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="username">Username</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="username" name="username"
+                        <input class="form-control" autocomplete="off" type="text" id="username" name="username"
                             data-parsley-required="true" required />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="password">Password</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="password" id="password" name="password"
+                        <input class="form-control" autocomplete="off" type="password" id="password" name="password"
                             data-parsley-required="true" required />
                     </div>
                 </div>

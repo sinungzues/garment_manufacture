@@ -14,7 +14,7 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="nopo">No Po.</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="nopo" name="nopo"
+                        <input class="form-control" autocomplete="off" type="text" id="nopo" name="nopo"
                             data-parsley-required="true" required value="{{ old('nopo') }}" />
                     </div>
                 </div>

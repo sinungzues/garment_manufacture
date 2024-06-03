@@ -15,7 +15,7 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="name">Name</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="name" name="name"
+                        <input class="form-control" autocomplete="off" type="text" id="name" name="name"
                             data-parsley-required="true" required value="{{ old('name', $suplier->name) }}" />
                     </div>
                 </div>
@@ -28,14 +28,14 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="tel">Tel</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="tel" name="tel"
+                        <input class="form-control" autocomplete="off" type="text" id="tel" name="tel"
                             data-parsley-required="true" value="{{ old('tel', $suplier->tel) }}" />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="fax">Fax</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="fax" name="fax"
+                        <input class="form-control" autocomplete="off" type="text" id="fax" name="fax"
                             data-parsley-required="true" value="{{ old('fax', $suplier->fax) }}" />
                     </div>
                 </div>

@@ -9,13 +9,14 @@
 
         <div class="panel-body">
             <a href="/purchaseorder" class="btn btn-sm btn-danger mb-3"><i class="fa fa-angles-left"></i> Back</a>
-            <form class="form-horizontal" data-parsley-validate="true" action="/purchaseorder/{{ $purchaseOrder->id }}" method="post">
+            <form class="form-horizontal" data-parsley-validate="true" action="/purchaseorder/{{ $purchaseOrder->id }}"
+                method="post">
                 @method('put')
                 @csrf
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="nopo">No Po.</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="nopo" name="nopo"
+                        <input class="form-control" autocomplete="off" type="text" id="nopo" name="nopo"
                             data-parsley-required="true" required value="{{ old('nopo', $purchaseOrder->nopo) }}" />
                     </div>
                 </div>
@@ -92,7 +93,7 @@
                     <label for="total_ppn" class="col-lg-4 col-form-label">Total PPN</label>
                     <div class="col-lg-8">
                         <input type="text" class="form-control" name="total_ppn" id="total_ppn"
-                            value="{{ old('total_ppn',$purchaseOrder->total_ppn) }}" readonly>
+                            value="{{ old('total_ppn', $purchaseOrder->total_ppn) }}" readonly>
                     </div>
                 </div>
                 <div class="form-group row mt-3">

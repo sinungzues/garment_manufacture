@@ -14,14 +14,14 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="name">Name</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="name" name="name"
+                        <input class="form-control" autocomplete="off" type="text" id="name" name="name"
                             data-parsley-required="true" required value="{{ old('name') }}" />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label form-label" for="code">Code</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" id="code" name="code"
+                        <input class="form-control" autocomplete="off" type="text" id="code" name="code"
                             data-parsley-required="true" required value="{{ old('code') }}" />
                     </div>
                 </div>
