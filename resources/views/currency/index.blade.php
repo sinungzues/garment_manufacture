@@ -9,7 +9,7 @@
 
         <div class="panel-body">
             <a href="/currency/create" class="btn btn-success mb-3">
-                <i class="fa fa-user-tie me-1"></i> Add Currency
+                <i class="fa fa-plus me-1"></i> Add Currency
             </a>
             <table id="data-table-default" width="100%" class="table table-striped table-bordered align-middle text-nowrap">
                 <thead>

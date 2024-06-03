@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('ppn');
             $table->integer('id_currency');
             $table->string('status')->default('P');
-            $table->string('total_ppn')->nullable();
+            $table->float('total_ppn')->nullable();
             $table->boolean('isdelete')->default(0);
             $table->string('user_edit')->nullable();
             $table->string('user_delete')->nullable();
