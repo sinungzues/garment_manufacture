@@ -11,10 +11,12 @@
     <link rel="icon" href="{{ asset('assets/img/logo/logo-bs5.png') }}">
 
     @include('layouts.css')
+    <link href="{{ asset('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
         integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
         crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -41,10 +43,8 @@
                     <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center"
                         data-bs-toggle="dropdown">
                         @php
-                            // Periksa apakah session randomNumber sudah ada atau belum
                             $randomNumber = session('randomNumber');
                             if (!$randomNumber) {
-                                // Jika belum, hasilkan nilai randomNumber secara acak dan simpan ke dalam session
                                 $randomNumber = rand(1, 14);
                                 session(['randomNumber' => $randomNumber]);
                             }
@@ -79,6 +79,28 @@
     </div>
 
     @include('layouts.js')
+    <script>
+        @if (session('notification'))
+            Swal.fire({
+                title: '{{ session('notification.title') }}',
+                text: '{{ session('notification.message') }}',
+                icon: '{{ session('notification.type') }}',
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "OK",
+                timer: 1500,
+            });
+        @endif
+
+        @if (session('login'))
+            $.gritter.add({
+                title: '{{ session('login.title') }}',
+                text: '{{ session('login.text') }}',
+                image: '{{ session('login.image') }}',
+                sticky: false,
+                time: '{{ session('login.time') }}'
+            });
+        @endif
+    </script>
 </body>
 
 </html>

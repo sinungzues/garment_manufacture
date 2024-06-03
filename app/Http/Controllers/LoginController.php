@@ -32,6 +32,15 @@ class LoginController extends Controller
                 $request->session()->put('randomNumber', $randomNumber);
             }
 
+            $user = auth()->user();
+
+            session()->flash('login', [
+                'title' => 'Welcome Back, ' . $user->name . '!',
+                'text' => 'Have A Nice Day!',
+                'image' => asset('assets/img/user/user-' . $randomNumber . '.jpg'),
+                'time' => 2000
+            ]);
+
             return redirect()->intended('/');
         }
 

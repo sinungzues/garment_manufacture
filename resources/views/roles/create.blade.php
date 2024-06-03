@@ -4,20 +4,11 @@
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
             <h4 class="panel-title">ADD NEW ROLE</h4>
-            <div class="panel-heading-btn">
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i
-                        class="fa fa-expand"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i
-                        class="fa fa-redo"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i
-                        class="fa fa-minus"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i
-                        class="fa fa-times"></i></a>
-            </div>
+
         </div>
 
         <div class="panel-body">
-            <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger mb-3"><i class="fa fa-angles-left"></i> Back</a>
+            <a href="/role" class="btn btn-sm btn-danger mb-3"><i class="fa fa-angles-left"></i> Back</a>
             <form class="form-horizontal" data-parsley-validate="true" action="/role" method="post">
                 @csrf
                 <div class="form-group row mb-3">

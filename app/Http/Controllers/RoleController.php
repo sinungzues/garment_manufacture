@@ -36,7 +36,20 @@ class RoleController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        Role::create($validatedData);
+        $role = Role::create($validatedData);
+        if($role){
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Saved!',
+                'message' => 'Your data has been successfully saved.'
+            ]);
+        }else{
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Saved!',
+                'message' => 'Your data can\'t saved.'
+            ]);
+        }
 
         return redirect('/role');
     }
@@ -68,7 +81,21 @@ class RoleController extends Controller
             'name' => 'required|string|max:255|unique:roles,name,' . $role->id,
         ]);
 
-        $role->update($validatedData);
+        $role->name = $request->input('name');
+
+        if($role->save()){
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Saved!',
+                'message' => 'Your data has been successfully updated.'
+            ]);
+        }else{
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Saved!',
+                'message' => 'Your data can\'t update.'
+            ]);
+        }
 
         return redirect('/role');
     }
@@ -78,7 +105,19 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->delete();
+        if ($role->delete()) {
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Deleted!',
+                'message' => 'Your data has been successfully deleted.'
+            ]);
+        } else {
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Deleted!',
+                'message' => 'Your data can\'t deleted.'
+            ]);
+        }
         return redirect('/role');
     }
 }

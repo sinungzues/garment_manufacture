@@ -1,0 +1,122 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Currency;
+use Illuminate\Http\Request;
+
+class CurrencyController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $currency = Currency::all();
+        return view('currency.index',[
+            'currency' => $currency
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('currency.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' =>'required|max:255',
+            'code' =>'required|max:255',
+        ]);
+
+        $currency = Currency::create($validatedData);
+        if($currency){
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Saved!',
+                'message' => 'Your data has been successfully saved.'
+            ]);
+        }else{
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Saved!',
+                'message' => 'Your data can\'t saved.'
+            ]);
+        }
+
+        return redirect('/currency');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Currency $currency)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Currency $currency)
+    {
+        return view('currency.edit',[
+            'currency' => $currency,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Currency $currency)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        $currency->name = $request->input('name');
+        $currency->code = $request->input('code');
+        if($currency->save()){
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Saved!',
+                'message' => 'Your data has been successfully updated.'
+            ]);
+        }else{
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Saved!',
+                'message' => 'Your data can\'t update.'
+            ]);
+        }
+        return redirect('/currency');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Currency $currency)
+    {
+        if ($currency->delete()) {
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Data Deleted!',
+                'message' => 'Your data has been successfully deleted.'
+            ]);
+        } else {
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'Data Not Deleted!',
+                'message' => 'Your data can\'t deleted.'
+            ]);
+        }
+
+        return redirect('/currency');
+    }
+}

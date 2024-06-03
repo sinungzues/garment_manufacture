@@ -38,6 +38,43 @@
                 </a>
             </div>
             <div
+                class="menu-item has-sub {{ Request::segment(1) == 'departement' || Request::segment(1) == 'ppn' || Request::segment(1) == 'suplier' || Request::segment(1) == 'satuan' || Request::segment(1) == 'currency' ? 'active' : '' }}">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fa fa-database"></i>
+                    </div>
+                    <div class="menu-text">Master</div>
+                    <div class="menu-caret"></div>
+                </a>
+                <div class="menu-submenu">
+                    <div class="menu-item {{ Request::segment(1) == 'departement' ? 'active' : '' }}">
+                        <a href="/departement" class="menu-link">
+                            <div class="menu-text">Departement</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{ Request::segment(1) == 'ppn' ? 'active' : '' }}">
+                        <a href="/ppn" class="menu-link">
+                            <div class="menu-text">PPN</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{ Request::segment(1) == 'suplier' ? 'active' : '' }}">
+                        <a href="/suplier" class="menu-link">
+                            <div class="menu-text">Suplier</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{ Request::segment(1) == 'satuan' ? 'active' : '' }}">
+                        <a href="/satuan" class="menu-link">
+                            <div class="menu-text">Satuan</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{ Request::segment(1) == 'currency' ? 'active' : '' }}">
+                        <a href="/currency" class="menu-link">
+                            <div class="menu-text">Currency</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
                 class="menu-item has-sub {{ Request::segment(1) == 'user' || Request::segment(1) == 'role' || Request::segment(1) == 'permissions' ? 'active' : '' }}">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
@@ -60,6 +97,23 @@
                     <div class="menu-item {{ Request::segment(1) == 'permissions' ? 'active' : '' }}">
                         <a href="/permissions" class="menu-link">
                             <div class="menu-text">Permissions</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="menu-item has-sub {{ Request::segment(1) == 'purchaseorder' || Request::segment(1) == 'purchaseorderdet' ? 'active' : '' }}">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fa fa-cart-shopping"></i>
+                    </div>
+                    <div class="menu-text">Purchase</div>
+                    <div class="menu-caret"></div>
+                </a>
+                <div class="menu-submenu">
+                    <div class="menu-item {{ Request::segment(1) == 'purchaseorder' ? 'active' : '' }}">
+                        <a href="/purchaseorder" class="menu-link">
+                            <div class="menu-text">Purchase Order</div>
                         </a>
                     </div>
                 </div>

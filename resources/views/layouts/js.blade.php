@@ -1,3 +1,4 @@
+<script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 <script src="{{ asset('assets/js/app.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/gritter/js/jquery.gritter.js') }}"></script>
@@ -41,7 +42,6 @@
 <script src="{{ asset('assets/js/demo/table-manage-buttons.demo.js') }}"></script>
 <script src="{{ asset('assets/plugins/@highlightjs/cdn-assets/highlight.min.js') }}"></script>
 <script src="{{ asset('assets/js/demo/render.highlight.js') }}"></script>
-<script src="{{ asset('assets/js/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/js/demo/table-manage-default.demo.js') }}"></script>
 <script src="{{ asset('assets/plugins/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/@fullcalendar/core/index.global.js') }}"></script>
@@ -65,33 +65,3 @@
 </script>
 <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
     data-cf-settings="b802bbfe03fa8d4f1b2b4d88-|49" defer></script>
-<script>
-    @if (Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info') }}"
-        switch (type) {
-            case 'info':
-
-                toastr.options.timeOut = 5000;
-                toastr.info("{{ Session::get('message') }}");
-                break;
-            case 'success':
-
-                toastr.options.timeOut = 5000;
-                toastr.success("{{ Session::get('message') }}");
-
-                break;
-            case 'warning':
-
-                toastr.options.timeOut = 5000;
-                toastr.warning("{{ Session::get('message') }}");
-
-                break;
-            case 'error':
-
-                toastr.options.timeOut = 5000;
-                toastr.error("{{ Session::get('message') }}");
-
-                break;
-        }
-    @endif
-</script>
