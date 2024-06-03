@@ -115,6 +115,11 @@
 
             newNumber = newNumber.toString().padStart(6, '0');
             document.getElementById('nopo').value = newNumber;
+
+            if (ppnCheckbox.checked) {
+                ppnTotal.classList.remove('d-none');
+                totalPpn.setAttribute('required', 'required');
+            }
         });
 
 

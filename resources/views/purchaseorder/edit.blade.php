@@ -126,6 +126,11 @@
 
             newNumber = newNumber.toString().padStart(6, '0');
             document.getElementById('nopo').value = newNumber;
+
+            if (ppnCheckbox.checked) {
+                ppnTotal.classList.remove('d-none');
+                totalPpn.setAttribute('required', 'required');
+            }
         });
 
 
@@ -146,10 +151,12 @@
         function updateCheckboxValue(checkbox) {
             if (checkbox.checked) {
                 checkbox.value = "true";
-                total_ppn.value = "{{ $ppn }}"
+                total_ppn.value = "{{ $ppn }}";
+                ppnTotal.classList.remove('d-none');
             } else {
                 checkbox.value = "false";
-                total_ppn.value = ""
+                total_ppn.value = "";
+                ppnTotal.classList.add('d-none');
             }
         }
     </script>

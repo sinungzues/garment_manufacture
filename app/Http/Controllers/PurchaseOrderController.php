@@ -190,7 +190,7 @@ class PurchaseOrderController extends Controller
 
         $updated = $purchaseOrder->update();
 
-        if($updated->save()){
+        if($updated){
             session()->flash('notification', [
                 'type' => 'success',
                 'title' => 'Data Saved!',
