@@ -30,7 +30,7 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label">Suplier</label>
                     <div class="col-lg-8">
-                        <select class="form-select messar" aria-label="Default select example" name="id_suplier" required>
+                        <select class="form-select supplier" aria-label="Default select example" name="id_suplier" required>
                             <option></option>
                             @foreach ($supliers as $sup)
                                 @if (old('id_suplier') === $sup->id || $purchaseOrder->id_suplier === $sup->id)

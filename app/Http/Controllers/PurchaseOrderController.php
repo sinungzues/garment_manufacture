@@ -25,7 +25,8 @@ class PurchaseOrderController extends Controller
     public function index()
     {
         $departmentId = Auth::user()->id_dept;
-        if($departmentId === 1){
+        $roleId = Auth::user()->role_id;
+        if($roleId === 1){
             $daftar = PurchaseOrder::where('isdelete', 0)->latest()->get();
         }else{
             $daftar = PurchaseOrder::where('id_dept', $departmentId)->where('isdelete',0)->latest()->get();

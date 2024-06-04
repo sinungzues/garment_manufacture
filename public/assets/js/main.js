@@ -74,6 +74,14 @@ $(document).ready(function () {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
 });
+$(document).ready(function () {
+    $(".nopo").select2({
+        placeholder: "Select No. PO",
+    });
+    $(".nopo").on("select2:open", function (e) {
+        $(".select2-dropdown").addClass("dropdown-menu");
+    });
+});
 
 $(document).ready(function () {
     $(".currencies").select2({
@@ -83,11 +91,21 @@ $(document).ready(function () {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
 });
+
 $(document).ready(function () {
     $(".satuan").select2({
         placeholder: "Select Satuan",
     });
     $(".satuan").on("select2:open", function (e) {
+        $(".select2-dropdown").addClass("dropdown-menu");
+    });
+});
+
+$(document).ready(function () {
+    $(".supplier").select2({
+        placeholder: "Select Suplier",
+    });
+    $(".supplier").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
 });
