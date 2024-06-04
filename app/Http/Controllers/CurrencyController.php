@@ -14,7 +14,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currency = Currency::all();
+        $currency = Currency::latest()->get();
         return view('currency.index',[
             'currency' => $currency
         ]);

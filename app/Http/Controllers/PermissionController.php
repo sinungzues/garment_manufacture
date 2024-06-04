@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PermissionController extends Controller
 {
     public function index(){
-        $permissions = Permission::all();
+        $permissions = Permission::latest()->get();
         return view('permissions.index',[
             'permissions' => $permissions
         ]);

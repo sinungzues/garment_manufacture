@@ -123,7 +123,7 @@ class PurchaseOrderController extends Controller
     public function show($id)
     {
         $po = PurchaseOrder::find($id);
-        $po_det = PurchaseOrderDetail::where('id_po',$po->id)->where('isdelete', 0)->get();
+        $po_det = PurchaseOrderDetail::where('id_po',$po->id)->where('isdelete', 0)->latest()->get();
         return view('purchaseorder.show', [
             'purchaseOrder' => $po,
             'po_det' => $po_det

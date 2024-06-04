@@ -43,7 +43,7 @@ class LoginController extends Controller
                 'time' => 2000
             ]);
 
-            LogActivity::writeLog('User logged in.', 'info', ['user_id' => $user->id,
+            LogActivity::writeLog('User logged in.', 'info', $user->id, ['user_id' => $user->id,
                                                                 'username' => $user->name,
                                                                 ]);
 
@@ -58,7 +58,7 @@ class LoginController extends Controller
     {
         $user = auth()->user();
 
-        LogActivity::writeLog('User logged out.', 'info', ['user_id' => $user->id,
+        LogActivity::writeLog('User logged out.', 'info', $user->id, ['user_id' => $user->id,
                                                             'username' => $user->name,
                                                             ]);
         Session::forget('randomNumber');

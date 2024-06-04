@@ -12,7 +12,7 @@ class SuplierController extends Controller
      */
     public function index()
     {
-        $suplier = Suplier::all();
+        $suplier = Suplier::latest()->get();
         return view('suplier.index',[
             'supliers' => $suplier
         ]);

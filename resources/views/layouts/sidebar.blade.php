@@ -334,6 +334,15 @@
                 </div>
             </div>
 
+            <div class="menu-item {{ Request::is('/log') ? 'active' : '' }}">
+                <a href="/log" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="menu-text">Log</div>
+                </a>
+            </div>
+
             <div class="menu-item d-flex">
                 <a href="javascript:;"
                     class="app-sidebar-minify-btn ms-auto d-flex align-items-center text-decoration-none"

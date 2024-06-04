@@ -12,7 +12,7 @@ class SatuanController extends Controller
      */
     public function index()
     {
-        $satuan = Satuan::paginate(15);
+        $satuan = Satuan::latest()->get();
         return view('satuan.index',[
             'satuans' => $satuan
         ]);

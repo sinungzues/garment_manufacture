@@ -14,7 +14,7 @@ class DepartementController extends Controller
      */
     public function index()
     {
-        $departement = Departement::whereNotIn('name', ['Administrator'])->paginate(15);
+        $departement = Departement::whereNotIn('name', ['Administrator'])->latest()->get();
         return view('departement.index',[
             'departements' => $departement
         ]);

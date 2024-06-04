@@ -11,8 +11,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\SuplierController;
 use App\Http\Controllers\UserController;
+use App\Models\LogActivity;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -65,3 +68,11 @@ Route::get('/view-excel/{id}', [PurchaseOrderController::class, 'viewExcel']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/log', function () {
+    // $logs = DB::table('log_activities')->latest();
+    $logs = LogActivity::with('user')->get();
+    return view('log',[
+        'logs' => $logs
+    ]);
+})->middleware('auth');
