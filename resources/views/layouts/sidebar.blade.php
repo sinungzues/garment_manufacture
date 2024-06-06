@@ -41,7 +41,7 @@
 
             <!-- Master Section -->
             <div
-                class="menu-item has-sub {{ Request::segment(1) == 'departement' || Request::segment(1) == 'ppn' || Request::segment(1) == 'suplier' || Request::segment(1) == 'satuan' || Request::segment(1) == 'currency' ? 'active' : '' }}">
+                class="menu-item has-sub {{ Request::segment(1) == 'departement' || Request::segment(1) == 'ppn' || Request::segment(1) == 'suplier' || Request::segment(1) == 'satuan' || Request::segment(1) == 'currency' || Request::segment(1) == 'position' ? 'active' : '' }}">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
                         <i class="fa fa-database"></i>
@@ -53,6 +53,11 @@
                     <div class="menu-item {{ Request::segment(1) == 'departement' ? 'active' : '' }}">
                         <a href="/departement" class="menu-link">
                             <div class="menu-text">Departement</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{ Request::segment(1) == 'position' ? 'active' : '' }}">
+                        <a href="/position" class="menu-link">
+                            <div class="menu-text">Position</div>
                         </a>
                     </div>
                     <div class="menu-item {{ Request::segment(1) == 'ppn' ? 'active' : '' }}">

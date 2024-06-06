@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\GoodReceiveController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PpnController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseOrderDetailController;
@@ -16,19 +17,6 @@ use App\Models\LogActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +44,7 @@ Route::resource('/departement', DepartementController::class)->middleware(['auth
 Route::resource('/satuan', SatuanController::class)->middleware(['auth']);
 Route::resource('/currency', CurrencyController::class)->middleware(['auth']);
 Route::resource('/ppn', PpnController::class)->middleware('auth');
+Route::resource('/position', PositionController::class)->middleware('auth');
 
 Route::resource('/purchaseorder', PurchaseOrderController::class)->middleware('auth');
 Route::get('/purchaseorder/restore/{id}', [PurchaseOrderController::class, 'restore']);
