@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PT BSGI | Departement')
+@section('title', 'CLOUD | Departement')
 @section('content')
     <div class="panel panel-inverse">
         <div class="panel-heading">

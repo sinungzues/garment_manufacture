@@ -260,7 +260,7 @@ class PurchaseOrderController extends Controller
     public function history(){
         $daftar = PurchaseOrder::where('isdelete', 1)->orderBy('delete_date', 'desc')->get();
         return view('log',[
-            'daftar' => $daftar
+            'logs' => $daftar
         ]);
     }
     public function restore($id){

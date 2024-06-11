@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PT BSGI | Edit Position')
+@section('title', 'CLOUD | Edit Position')
 @section('content')
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
@@ -9,8 +9,7 @@
 
         <div class="panel-body">
             <a href="/position" class="btn btn-sm btn-danger mb-3"><i class="fa fa-angles-left"></i> Back</a>
-            <form class="form-horizontal" data-parsley-validate="true" action="/position/{{ $position->id }}"
-                method="post">
+            <form class="form-horizontal" data-parsley-validate="true" action="/position/{{ $position->id }}" method="post">
                 @method('put')
                 @csrf
                 <div class="form-group row mb-3">

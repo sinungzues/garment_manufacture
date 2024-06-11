@@ -4,6 +4,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GoodReceiveController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PositionController;
@@ -56,12 +57,7 @@ Route::get('/view-excel/{id}', [PurchaseOrderController::class, 'viewExcel']);
 Route::resource('/purchaseorderdet', PurchaseOrderDetailController::class)->middleware('auth');
 Route::get('/purchaseorderdet/create/{purchaseOrder}', [PurchaseOrderDetailController::class, 'create'])->middleware('auth');
 
-Route::get('/log', function () {
-    $logs = LogActivity::with('user')->get();
-    return view('log',[
-        'logs' => $logs
-    ]);
-})->middleware('auth');
+Route::resource('/log', LogActivityController::class)->middleware('auth');
 
 Route::resource('/goods-receipt', GoodReceiveController::class)->middleware('auth');
 

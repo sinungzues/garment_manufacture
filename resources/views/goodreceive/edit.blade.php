@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PT BSGI | Edit Good Receipt')
+@section('title', 'CLOUD | Edit Good Receipt')
 @section('content')
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
@@ -9,7 +9,8 @@
 
         <div class="panel-body">
             <a href="/goods-receipt" class="btn btn-sm btn-danger mb-3"><i class="fa fa-angles-left"></i> Back</a>
-            <form class="form-horizontal" data-parsley-validate="true" action="/goods-receipt/{{ $goodReceive->id }}" method="post">
+            <form class="form-horizontal" data-parsley-validate="true" action="/goods-receipt/{{ $goodReceive->id }}"
+                method="post">
                 @method('put')
                 @csrf
                 <div class="form-group row mb-3">
@@ -23,14 +24,15 @@
                     <label class="col-lg-4 col-form-label form-label" for="user_receive">User Receive</label>
                     <div class="col-lg-8">
                         <input class="form-control" autocomplete="off" type="text" id="user_receive" name="user_receive"
-                            data-parsley-required="true" required value="{{ old('user_receive',$goodReceive->user_receive) }}" />
+                            data-parsley-required="true" required
+                            value="{{ old('user_receive', $goodReceive->user_receive) }}" />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
                     <label for="date" class="col-lg-4 col-form-label">Date</label>
                     <div class="col-lg-8">
                         <input type="date" class="form-control" name="date" id="date"
-                            value="{{ old('date', date('Y-m-d'),$goodReceive->date) }}" required>
+                            value="{{ old('date', date('Y-m-d'), $goodReceive->date) }}" required>
                     </div>
                 </div>
                 <div class="form-group row mb-3">
@@ -51,11 +53,11 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label">Supplier</label>
                     <div class="col-lg-8">
-                        <select class="form-select supplier" aria-label="Default select example" name="id_suplier"
-                            required>
+                        <select class="form-select supplier" aria-label="Default select example" name="id_suplier" required>
                             <option></option>
                             @foreach ($supliers as $sup)
-                                <option value="{{ $sup->id }}" {{ old('id_suplier') == $sup->id || $goodReceive->id_suplier ? 'selected' : '' }}>
+                                <option value="{{ $sup->id }}"
+                                    {{ old('id_suplier') == $sup->id || $goodReceive->id_suplier ? 'selected' : '' }}>
                                     {{ $sup->name }}
                                 </option>
                             @endforeach

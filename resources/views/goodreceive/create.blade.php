@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PT BSGI | Add New Purchase Order')
+@section('title', 'CLOUD | Add New Purchase Order')
 @section('content')
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
@@ -50,8 +50,7 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-form-label">Supplier</label>
                     <div class="col-lg-8">
-                        <select class="form-select supplier" aria-label="Default select example" name="id_suplier"
-                            required>
+                        <select class="form-select supplier" aria-label="Default select example" name="id_suplier" required>
                             <option></option>
                             @foreach ($supliers as $sup)
                                 <option value="{{ $sup->id }}" {{ old('id_suplier') == $sup->id ? 'selected' : '' }}>

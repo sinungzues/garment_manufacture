@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PT BSGI | Employee')
+@section('title', 'CLOUD | Employee')
 @section('content')
     <div class="panel panel-inverse">
         <div class="panel-heading">
@@ -58,7 +58,7 @@
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 @if ($employee->is_active === 1)
-                                    <a href="/employees/not-active/{{ $employee->id }}" class="btn btn-sm btn-red">
+                                    <a href="/employees/not-active/{{ $employee->id }}" class="btn btn-sm btn-warning">
                                         <i class="fa fa-times"></i>
                                     </a>
                                 @else
@@ -66,12 +66,12 @@
                                         <i class="fa fa-check"></i>
                                     </a>
                                 @endif
-                                {{-- <form action="/employees/{{ $employee->id }}" method="post" class="d-inline">
+                                <form action="/employees/{{ $employee->id }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger btn-sm" onclick="Delete(event)"><i
                                             class="fa fa-trash"></i></button>
-                                </form> --}}
+                                </form>
                             </td>
                         </tr>
                     @endforeach

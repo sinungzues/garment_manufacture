@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PT BSGI | Add New Purchase Order')
+@section('title', 'CLOUD | Add New Purchase Order')
 @section('content')
     <div class="panel panel-inverse" data-sortable-id="form-validation-1">
         <div class="panel-heading">
@@ -86,8 +86,7 @@
                 <a href="/purchaseorderdet/create/{{ $purchaseOrder->id }}" class="btn btn-success btn-sm mb-3"><i
                         class="fa fa-plus"></i> Add Item</a>
             @endif
-            <table width="100%"
-                class="table table-striped table-bordered align-middle text-nowrap">
+            <table width="100%" class="table table-striped table-bordered align-middle text-nowrap">
                 <thead>
                     <tr>
                         <th class="text-center text-nowrap">No.</th>

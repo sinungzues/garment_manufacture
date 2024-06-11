@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>@yield('title', 'PTBSGI')</title>
+    <title>@yield('title', 'CLOUD')</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="Dashboard for Color Admin" name="description" />
     <meta content="Author Name" name="author" />
 
-    <link rel="icon" href="{{ asset('assets/img/logo/logo-bs5.png') }}">
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}">
 
     @include('layouts.css')
     <link href="{{ asset('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
