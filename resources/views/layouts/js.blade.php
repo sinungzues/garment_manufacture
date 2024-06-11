@@ -51,6 +51,7 @@
 <script src="{{ asset('assets/plugins/@fullcalendar/list/index.global.js') }}"></script>
 <script src="{{ asset('assets/plugins/@fullcalendar/bootstrap/index.global.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/dist/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3Q0VGQKY3"></script>
 <script>

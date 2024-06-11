@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->string('nik')->primary();
+            $table->id();
+            $table->string('nik');
             $table->string('nama');
             $table->string('nama_depan')->nullable();
             $table->string('nama_belakang')->nullable();
@@ -24,7 +25,8 @@ return new class extends Migration
             $table->dateTime('contract_exp_date')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat');
-            $table->string('email');
+            $table->string('email')->nullable();
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }

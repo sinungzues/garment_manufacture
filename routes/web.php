@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GoodReceiveController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
@@ -63,6 +64,13 @@ Route::get('/log', function () {
 })->middleware('auth');
 
 Route::resource('/goods-receipt', GoodReceiveController::class)->middleware('auth');
+
+// HR
+Route::resource('/employees', EmployeeController::class)->middleware('auth');
+Route::get('/employees/filter/{filter}', [EmployeeController::class, 'filter'])->middleware('auth');
+Route::get('/employees/active/{id}', [EmployeeController::class, 'active'])->middleware('auth');
+Route::get('/employees/not-active/{id}', [EmployeeController::class, 'notactive'])->middleware('auth');
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);

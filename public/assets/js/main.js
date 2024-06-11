@@ -55,58 +55,56 @@ $(document).ready(function () {
     $(".role").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
-});
-
-$(document).ready(function () {
     $(".departement").select2({
         placeholder: "Select Departement",
     });
     $(".departement").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
-});
-
-$(document).ready(function () {
     $(".messar").select2({
         placeholder: "Select Messar",
     });
     $(".messar").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
-});
-$(document).ready(function () {
     $(".nopo").select2({
         placeholder: "Select No. PO",
     });
     $(".nopo").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
-});
-
-$(document).ready(function () {
     $(".currencies").select2({
         placeholder: "Select Currency",
     });
     $(".currencies").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
-});
-
-$(document).ready(function () {
     $(".satuan").select2({
         placeholder: "Select Satuan",
     });
     $(".satuan").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
     });
-});
-
-$(document).ready(function () {
     $(".supplier").select2({
         placeholder: "Select Suplier",
     });
     $(".supplier").on("select2:open", function (e) {
         $(".select2-dropdown").addClass("dropdown-menu");
+    });
+    $(".position").select2({
+        placeholder: "Select Position",
+    });
+    $(".position").on("select2:open", function (e) {
+        $(".select2-dropdown").addClass("dropdown-menu");
+    });
+
+    $("#hire_date").datepicker({
+        todayHighlight: true,
+        autoclose: true,
+    });
+    $("#contract_exp_date").datepicker({
+        todayHighlight: true,
+        autoclose: true,
     });
 });
 
