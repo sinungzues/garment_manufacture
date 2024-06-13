@@ -66,6 +66,15 @@ Route::resource('/employees', EmployeeController::class)->middleware('auth');
 Route::get('/employees/filter/{filter}', [EmployeeController::class, 'filter'])->middleware('auth');
 Route::get('/employees/active/{id}', [EmployeeController::class, 'active'])->middleware('auth');
 Route::get('/employees/not-active/{id}', [EmployeeController::class, 'notactive'])->middleware('auth');
+Route::get('/qr-code/{filename}', function ($filename) {
+    $path = storage_path('app/qr_codes/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->name('qr-code');
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');

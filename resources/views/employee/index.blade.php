@@ -27,6 +27,7 @@
                         <th class="text-nowrap text-center">Email</th>
                         <th class="text-nowrap text-center">Alamat</th>
                         <th class="text-nowrap text-center">Aktif</th>
+                        <th class="text-nowrap text-center">QR</th>
                         <th class="text-nowrap text-center">Action</th>
                     </tr>
                 </thead>
@@ -52,6 +53,9 @@
                                 @else
                                     Tidak
                                 @endif
+                            </td>
+                            <td>
+                                <img src="{{ route('qr-code', $employee->nik . '.png') }}" alt="QR Code {{ $employee->name }}">
                             </td>
                             <td class="text-center">
                                 <a href="/employees/{{ $employee->id }}/edit" class="btn btn-sm btn-yellow">

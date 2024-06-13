@@ -8,6 +8,8 @@ use App\Models\LogActivity;
 use App\Models\Position;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EmployeeController extends Controller
 {
@@ -17,10 +19,16 @@ class EmployeeController extends Controller
     public function index()
     {
         // $employee = Employee::where('is_active', 1)->get();
-        $employee = Employee::get();
+        $employees = Employee::get();
+        foreach ($employees as $employee) {
+            $qrCode = QrCode::size(100)->generate($employee->nik);
+            $qrCodePath = 'qr_codes/' . $employee->nik . '.png';
+            Storage::put($qrCodePath, $qrCode);
+
+        }
 
         return view('employee.index',[
-            'employees' => $employee
+            'employees' => $employees
         ]);
     }
 
