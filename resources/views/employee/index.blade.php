@@ -55,7 +55,7 @@
                                 @endif
                             </td>
                             <td>
-                                <img src="{{ route('qr-code', $employee->nik . '.png') }}" alt="QR Code {{ $employee->name }}">
+                                <img src="{{ route('qr-code', $employee->nik . '.png') }}" alt="QR Code {{ $employee->nama . ' ' . $employee->nik }}" width="50">
                             </td>
                             <td class="text-center">
                                 <a href="/employees/{{ $employee->id }}/edit" class="btn btn-sm btn-yellow">

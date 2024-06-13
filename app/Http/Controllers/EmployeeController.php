@@ -21,7 +21,7 @@ class EmployeeController extends Controller
         // $employee = Employee::where('is_active', 1)->get();
         $employees = Employee::get();
         foreach ($employees as $employee) {
-            $qrCode = QrCode::size(100)->generate($employee->nik);
+            $qrCode = QrCode::size(200)->generate($employee->nik);
             $qrCodePath = 'qr_codes/' . $employee->nik . '.png';
             Storage::put($qrCodePath, $qrCode);
 
