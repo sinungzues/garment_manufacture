@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Color Admin | Login v2</title>
+    <title>CLOUD | Login</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content name="description" />
     <meta content name="author" />
+
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}">
 
     @include('layouts.css')
 </head>
@@ -31,9 +33,9 @@
                 <div class="login-header">
                     <div class="brand">
                         <div class="d-flex align-items-center">
-                            <span class="logo"></span> <b>Color</b> Admin
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="50"><b>Cloud</b>
                         </div>
-                        <small>Bootstrap 5 Responsive Admin Template</small>
+                        <small>Login</small>
                     </div>
                     <div class="icon">
                         <i class="fa fa-lock"></i>
