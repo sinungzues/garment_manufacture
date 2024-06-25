@@ -60,6 +60,9 @@ Route::get('/purchaseorderdet/create/{purchaseOrder}', [PurchaseOrderDetailContr
 Route::resource('/log', LogActivityController::class)->middleware('auth');
 
 Route::resource('/goods-receipt', GoodReceiveController::class)->middleware('auth');
+Route::post('/goods-receiptdet/{id}/updateQty', [GoodReceiveController::class, 'updateQty'])->middleware('auth');
+Route::get('/goods-receipt/posting/{id}', [GoodReceiveController::class, 'posting'])->middleware('auth');
+
 
 // HR
 Route::resource('/employees', EmployeeController::class)->middleware('auth');

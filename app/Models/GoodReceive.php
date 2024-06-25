@@ -17,4 +17,7 @@ class GoodReceive extends Model
     public function user(){
         return $this->belongsTo(User::class, 'id_user_in');
     }
+    public function po(){
+        return $this->belongsTo(PurchaseOrder::class, 'id_po');
+    }
 }

@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('good_receives', function (Blueprint $table) {
+        Schema::create('good_receive_details', function (Blueprint $table) {
             $table->id();
-            $table->string('no_gr');
-            $table->string('user_receive');
-            $table->string('no_po');
-            $table->foreignId('id_suplier');
-            $table->foreignId('id_user_in');
-            $table->dateTime('date')->nullable();
+            $table->foreignId('id_gr');
+            $table->foreignId('id_po');
+            $table->string('material');
+            $table->string('qty');
+            $table->string('qty_receive_previous')->default(0);
             $table->string('isdelete')->default(0);
-            $table->string('status')->default("O");
+            $table->foreignId('id_satuan');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('good_receives');
+        Schema::dropIfExists('good_receive_details');
     }
 };

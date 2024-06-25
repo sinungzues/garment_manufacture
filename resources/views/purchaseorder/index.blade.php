@@ -74,7 +74,7 @@
                                 @endif
                                 <a href="/view-excel/{{ $d->id }}" class="btn btn-sm btn-green"><i
                                         class="fa fa-file-excel"></i></a>
-                                @if ($d->status === 'P' && Auth::user()->role->name === 'Admin')
+                                @if ($d->status === 'P' && Auth::user()->role->name === 'Super Admin')
                                     <a onclick="Approve(event,{{ $d->id }})" class="btn btn-sm btn-primary"
                                         style="cursor:pointer;"><i class="fa fa-check-circle"></i>
                                     </a>

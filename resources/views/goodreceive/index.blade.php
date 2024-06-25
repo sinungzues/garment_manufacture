@@ -35,15 +35,20 @@
                                 <a href="/goods-receipt/{{ $rec->id }}" class="btn btn-sm btn-info"><i
                                         class="fa fa-eye"></i>
                                 </a>
-                                <a href="/goods-receipt/{{ $rec->id }}/edit" class="btn btn-sm btn-yellow">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <form action="/goods-receipt/{{ $rec->id }}" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm" onclick="Delete(event)"><i
-                                            class="fa fa-trash"></i></button>
-                                </form>
+                                @if ($rec->status === 'O')
+                                    <a href="" onclick="Posting(event,'{{ $rec->id }}')"
+                                        class="btn btn-sm btn-green"><i class="fa fa-check"></i>
+                                    </a>
+                                    <a href="/goods-receipt/{{ $rec->id }}/edit" class="btn btn-sm btn-yellow">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <form action="/goods-receipt/{{ $rec->id }}" method="post" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger btn-sm" onclick="Delete(event)"><i
+                                                class="fa fa-trash"></i></button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

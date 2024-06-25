@@ -48,6 +48,24 @@ function Refresh(event, id) {
     });
 }
 
+function Posting(event, id) {
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Are You Sure?",
+        text: "To posting this GR?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "/goods-receipt/posting/" + id;
+        }
+    });
+}
+
 $(document).ready(function () {
     $(".role").select2({
         placeholder: "Select Role",

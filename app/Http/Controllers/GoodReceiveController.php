@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateGoodReceiveRequest;
 use App\Models\GoodReceive;
+use App\Models\GoodReceiveDetail;
 use App\Models\LogActivity;
 use App\Models\PurchaseOrder;
+use App\Models\PurchaseOrderDetail;
 use App\Models\Suplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +33,10 @@ class GoodReceiveController extends Controller
     public function create()
     {
         $id_dept = Auth::user()->id_dept;
-        $nogr = GoodReceive::max('no_gr');
+        $nogr = GoodReceive::where('isdelete', 0)->max('no_gr');
         $lastNumber = preg_replace('/[^0-9]/', '', $nogr);
         $suplier = Suplier::all();
-        $po = PurchaseOrder::where('id_dept', $id_dept)->get();
+        $po = PurchaseOrder::where('id_dept', $id_dept)->where('status', 'A')->get();
         return view('goodreceive.create',[
             'lastNumber' => $lastNumber,
             'supliers' => $suplier,
@@ -94,9 +96,39 @@ class GoodReceiveController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(GoodReceive $goodReceive)
+    public function show($id)
     {
-        //
+        $gr = GoodReceive::where('id',$id)->first();
+        $nopo = $gr->no_po;
+        $number = filter_var($nopo, FILTER_SANITIZE_NUMBER_INT);
+        $po = PurchaseOrder::where('nopo', $number)->first();
+        $id_po = $po->id;
+        $po_det = PurchaseOrderDetail::where('id_po', $id_po)->get();
+
+        foreach ($po_det as $pod) {
+            $exists = GoodReceiveDetail::where('id_gr', $id)
+                ->where('material', $pod->material)
+                ->exists();
+
+            if (!$exists) {
+                GoodReceiveDetail::create([
+                    'id_gr' => $id,
+                    'id_po' => $id_po,
+                    'material' => $pod->material,
+                    'qty' => $pod->qty,
+                    'id_satuan' => $pod->id_satuan,
+                ]);
+            }
+        }
+
+        $grd = GoodReceiveDetail::where('id_gr', $id)->get();
+
+        return view('goodreceive.show',[
+            'gr' => $gr,
+            'po' => $po,
+            'po_det' => $po_det,
+            'grd' => $grd
+        ]);
     }
 
     /**
@@ -169,25 +201,90 @@ class GoodReceiveController extends Controller
      */
     public function destroy($id)
     {
-        $purchaseOrder = GoodReceive::findOrFail($id);
-        $purchaseOrder->isdelete = 1;
-        $saved = $purchaseOrder->save();
+        $goodReceive = GoodReceive::findOrFail($id);
+        $goodReceive->isdelete = 1;
+        $saved = $goodReceive->save();
 
-        if ($saved) {
+        if($goodReceive->status === "O"){
+            $saved = $goodReceive->save();
+
+            if ($saved) {
+                $grd = GoodReceiveDetail::where('id_gr', $id)->get();
+
+                foreach ($grd as $detail) {
+                    $detail->isdelete = 1;
+                    $detail->save();
+                }
+
+                session()->flash('notification', [
+                    'type' => 'success',
+                    'title' => 'Data Deleted!',
+                    'message' => 'Your data has been successfully deleted.'
+                ]);
+            } else {
+                session()->flash('notification', [
+                    'type' => 'error',
+                    'title' => 'Data Not Deleted!',
+                    'message' => 'Your data can\'t deleted.'
+                ]);
+            }
+        }
+
+        return redirect('/goods-receipt');
+    }
+
+    public function updateQty(Request $request, $id)
+    {
+        try {
+            // Validasi data
+            $validatedData = $request->validate([
+                'qty_receive_current' => 'required|integer|min:0',
+            ]);
+
+            // Lakukan pengolahan data seperti yang Anda lakukan sebelumnya
+            $grdet = GoodReceiveDetail::findOrFail($id);
+
+            $grdet->qty_receive_previous += $validatedData['qty_receive_current'];
+            $grdet->save();
+
             session()->flash('notification', [
                 'type' => 'success',
-                'title' => 'Data Deleted!',
-                'message' => 'Your data has been successfully deleted.'
+                'title' => 'Success!',
+                'message' => 'Qty has been added'
+            ]);
+
+            // Redirect kembali ke halaman sebelumnya
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            // Tangani kesalahan
+            session()->flash('notification', [
+                'type' => 'error',
+                'title' => 'ERROR!',
+                'message' => $e->getMessage()
+            ]);
+            return redirect()->back();
+        }
+    }
+
+    public function posting($id){
+        $gr = GoodReceive::find($id);
+        $gr->status = "C";
+
+        if ($gr->save()) {
+            session()->flash('notification', [
+                'type' => 'success',
+                'title' => 'Status Changed!',
+                'message' => 'Good Receive Status Successfully Change'
             ]);
         } else {
             session()->flash('notification', [
                 'type' => 'error',
-                'title' => 'Data Not Deleted!',
-                'message' => 'Your data can\'t deleted.'
+                'title' => 'Status Can Not Change!',
+                'message' => ''
             ]);
         }
-
-
         return redirect('/goods-receipt');
     }
+
 }
