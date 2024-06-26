@@ -36,11 +36,26 @@ class GoodReceiveController extends Controller
         $nogr = GoodReceive::where('isdelete', 0)->max('no_gr');
         $lastNumber = preg_replace('/[^0-9]/', '', $nogr);
         $suplier = Suplier::all();
-        $po = PurchaseOrder::where('id_dept', $id_dept)->where('status', 'A')->get();
+        $grd = GoodReceive::where('status', 'O')->get();
+        $poList = [];
+        foreach ($grd as $grd_list) {
+            // Mengambil nilai no_po dari masing-masing hasil query
+            $no_po = $grd_list->no_po;
+
+            // Memproses no_po untuk mendapatkan hanya angka
+            $nopo = preg_replace('/[^0-9]/', '', $no_po);
+
+            // Query ke PurchaseOrder berdasarkan id_dept, status, dan nopo
+            $po = PurchaseOrder::where('id_dept', $id_dept)
+                ->where('status', 'A')
+                ->where('nopo', $nopo)
+                ->get();
+            $poList = $po;
+        }
         return view('goodreceive.create',[
             'lastNumber' => $lastNumber,
             'supliers' => $suplier,
-            'po' => $po
+            'po' => $poList
         ]);
     }
 
