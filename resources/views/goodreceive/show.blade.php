@@ -31,10 +31,24 @@
                                 <input type="text" class="form-control" value="{{ $gr->suplier->name }}" readonly>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
                         <div class="col-12 d-flex mb-3">
                             <label class="col-sm-4 col-form-label">User Receive</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" value="{{ $gr->user_receive }}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex mb-3">
+                            <label class="col-sm-4 col-form-label">Status</label>
+                            <div class="col-sm-8">
+                                @if ($gr->status === 'O')
+                                    <button class="btn btn-danger active" style="cursor: default">OPEN</button>
+                                @elseif ($gr->status === 'C')
+                                    <button class="btn btn-green active" style="cursor: default">CLOSED</button>
+                                @endif
                             </div>
                         </div>
                     </div>

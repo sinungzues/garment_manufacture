@@ -36,18 +36,19 @@ class GoodReceiveController extends Controller
         $nogr = GoodReceive::where('isdelete', 0)->max('no_gr');
         $lastNumber = preg_replace('/[^0-9]/', '', $nogr);
         $suplier = Suplier::all();
-        $grd = GoodReceive::where('status', 'O')->get();
-        $poList = [];
-        foreach ($grd as $grd_list) {
-            $no_po = $grd_list->no_po;
-            $nopo = preg_replace('/[^0-9]/', '', $no_po);
-            $po = PurchaseOrder::where('id_dept', $id_dept)
-                ->where('status', 'A')
-                ->where('nopo', $nopo)
-                ->get();
-            $poList = $po;
-        }
-        
+        $grdList = GoodReceive::where('status', '!=', 'A')->get();
+
+        // Ekstrak semua no_po dari hasil GoodReceive
+        $no_po_list = $grdList->pluck('no_po')->map(function($no_po) {
+            return preg_replace('/[^0-9]/', '', $no_po);
+        });
+
+        // Ambil data PurchaseOrder yang no_po-nya tidak ada dalam hasil GoodReceive
+        $poList = PurchaseOrder::where('id_dept', $id_dept)
+            ->where('status', 'A')
+            ->whereNotIn('nopo', $no_po_list)
+            ->get();
+
         return view('goodreceive.create',[
             'lastNumber' => $lastNumber,
             'supliers' => $suplier,
@@ -223,8 +224,7 @@ class GoodReceiveController extends Controller
                 $grd = GoodReceiveDetail::where('id_gr', $id)->get();
 
                 foreach ($grd as $detail) {
-                    $detail->isdelete = 1;
-                    $detail->save();
+                    $detail->delete();
                 }
 
                 session()->flash('notification', [
@@ -240,6 +240,7 @@ class GoodReceiveController extends Controller
                 ]);
             }
         }
+        $goodReceive->delete();
 
         return redirect('/goods-receipt');
     }
