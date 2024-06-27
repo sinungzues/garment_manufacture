@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeeController;
@@ -79,6 +80,7 @@ Route::get('/qr-code/{filename}', function ($filename) {
     return response()->file($path);
 })->name('qr-code');
 
+Route::resource('/attendance', AttendanceController::class)->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
